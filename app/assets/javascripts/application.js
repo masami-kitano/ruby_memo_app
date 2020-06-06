@@ -10,7 +10,52 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
+//
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+(function ($) {
+
+    $(window).on("load orientationchange resize", function() {
+        var title_width = $('.folder-title').width();
+        var title_width_all = $('.folder-top').width();
+        var title_width_diff = title_width_all - title_width;
+
+        if( title_width_all > title_width) {
+            $('.folder-top--over').css('width', title_width_diff + 'px');
+        }
+    });
+
+    $(function($){
+        $('.tab').click(function(){
+            $('.is-active').removeClass('is-active');
+            $(this).addClass('is-active');
+            $('.is-show').removeClass('is-show');
+            const index = $(this).index();
+            $('.folder-content__wrap').eq(index).addClass('is-show');
+        });
+    });
+    
+    $(function($){
+        $('.cat-create-btn').click(function() {
+            $('.cat-create-modal').css('display', 'block');
+        });
+        
+        $('.close-btn').click(function() {
+            $('.cat-create-modal').css('display', 'none');
+        });
+    });
+    
+    $(window).on('load',function(){
+        $('#category:first-child').addClass('is-active');
+    });
+    
+})($);
+
+
+
+
+

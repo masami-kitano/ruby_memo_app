@@ -1,5 +1,274 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+    <section class="main">
+        <div class="main-menu">
+            <p class="cat-create-btn main-menu__button"><i class="fas fa-pen"></i></p>
+            <p class="main-menu__button"><i class="far fa-trash-alt"></i></p>
+            <div class="cat-create-modal main-menu__modal">
+                <div class="main-menu__modal__content">
+                    <%= form_with(model: @category, local: true) do |f| %>
+                        <p class="cat-form-title">カテゴリーの作成</p>
+                        <%= f.text_field :name, class: 'cat-form-content', placeholder: '新しいカテゴリーを作成' %>
+                        <%= f.submit '作成', class: 'cat-form-btn' %>
+                    <% end %>
+                    <div class="close-btn">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="folder">
+                <div class="folder-top">
+                    <div class="folder-title">
+                        <% @categories.each do |category| %>
+                            <div id="category" class="tab folder-title__wrap">
+                                <div class="folder-title__item">
+                                    <p><%= category.name %></p>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="folder-top--over"></div>
+                </div>
+                <div class="folder-content">
+                    <div class="add-idea">
+                        <p class="add-idea__button">
+                            <span><i class="fas fa-plus"></i></span>
+                            アイデアを追加する
+                        </p>
+                    </div>
+                    <div class="folder-content__container">
+                        <div class="folder-content__wrap is-show">
+                            <div class="folder-flex">
+                                <div class="folder-item">
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業の概要</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>インターンをもっと身近なものにするアプリ</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業詳細</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>UIをカレンダー形式にし、今日すぐ行けるインターンを検索することができ、企業と就活生のインターンに対するハードルを低くする</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>市場・ターゲット</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>就職活動に取り組む学生</p>
+                                            <p>新卒採用を実施するき企業</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>コメント</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>この事業に対してコメントをしてください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業の概要</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>インターンをもっと身近なものにするアプリ</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業詳細</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>UIをカレンダー形式にし、今日すぐ行けるインターンを検索することができ、企業と就活生のインターンに対するハードルを低くする</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>市場・ターゲット</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>就職活動に取り組む学生</p>
+                                            <p>新卒採用を実施するき企業</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>コメント</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>この事業に対してコメントをしてください。</p>
+                                            <p>この事業に対してコメントをしてください。</p>
+                                            <p>この事業に対してコメントをしてください。</p>
+                                            <p>この事業に対してコメントをしてください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="folder-content__wrap">
+                            <div class="folder-flex">
+                                <div class="folder-item">
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業の概要</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>インターンをもっと身近なものにするアプリ</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業詳細</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>UIをカレンダー形式にし、今日すぐ行けるインターンを検索することができ、企業と就活生のインターンに対するハードルを低くする</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>市場・ターゲット</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>就職活動に取り組む学生</p>
+                                            <p>新卒採用を実施するき企業</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>コメント</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>この事業に対してコメントをしてください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業の概要</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>インターンをもっと身近なものにするアプリ</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業詳細</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>UIをカレンダー形式にし、今日すぐ行けるインターンを検索することができ、企業と就活生のインターンに対するハードルを低くする</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>市場・ターゲット</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>就職活動に取り組む学生</p>
+                                            <p>新卒採用を実施するき企業</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>コメント</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>この事業に対してコメントをしてください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="folder-content__wrap">
+                            <div class="folder-flex">
+                                <div class="folder-item">
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業の概要</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>インターンをもっと身近なものにするアプリ</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業詳細</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>UIをカレンダー形式にし、今日すぐ行けるインターンを検索することができ、企業と就活生のインターンに対するハードルを低くする</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>市場・ターゲット</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>就職活動に取り組む学生</p>
+                                            <p>新卒採用を実施するき企業</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>コメント</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>この事業に対してコメントをしてください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業の概要</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>インターンをもっと身近なものにするアプリ</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>事業詳細</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>UIをカレンダー形式にし、今日すぐ行けるイ��ターンを検索することができ、企業と就活生のインターンに対するハードルを低くする</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>市場・ターゲット</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>就職活動に取り組む学生</p>
+                                            <p>新卒採用を実施するき企業</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder-item__wrap">
+                                        <div class="folder-item__title">
+                                            <p>コメント</p>
+                                        </div>
+                                        <div class="folder-item__content">
+                                            <p>この事業に対してコメントをしてください。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <% else %>
     <div class="center jumbotron">
         <div class="text-center">

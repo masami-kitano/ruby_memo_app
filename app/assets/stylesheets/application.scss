@@ -1,0 +1,303 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ 
+$pc: 1024px; // PC
+$tab: 680px; // タブレット
+$sp: 480px;  // スマホ
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
+body {
+    min-height: 100vh;
+    font-family: Robot, Arial, Helvetica, sans-serif
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    background-color: #4A6788;
+    height: 64px;
+    color: #fff;
+
+    a {
+        color: #fff;
+        line-height: 64px;
+    }
+
+    &__left {
+        margin-left: 30px; 
+        font-size: 20px;
+    }
+
+    &__right {
+        margin-left: auto;
+        margin-right: 30px;
+        a {
+            &:first-child {
+                padding-right: 20px;
+            }
+
+            span {
+                padding-left: 5px;
+            }
+        }
+    }
+}
+
+.main {
+    display: flex;
+}
+
+.main-menu {
+    flex-wrap: wrap;
+    border-right: 1px solid #999;
+    padding-top: 5px;
+    width: 80px;
+    min-height: 900px;
+
+    .fas, .far {
+        color: #5F636B;
+    }
+
+    &__button {
+        cursor: pointer;
+        margin: 0 auto;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        line-height: 48px;
+    }
+    
+    &__modal {
+        display: none;
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.6);
+        
+        &__content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            width: 300px;
+            height: 120px;
+            background-color: #fff;
+            
+            .cat-form-title {
+                
+            }
+            
+            .cat-form-content {
+                margin-bottom: 10px;
+                width: 100%;
+                font-size: 14px;
+            }
+            
+            .cat-form-btn {
+                cursor: pointer;
+                margin-left: auto;
+                background-color: #fff;
+                border: none;
+                display: block;
+                
+                &:hover {
+                    background-color: rgba(#eee, 0.8);
+                }
+            }
+            
+            .close-btn {
+                cursor: pointer;
+                position: absolute;
+                right: 10px;
+                top: 6px;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                
+                &:hover {
+                    background-color: rgba(#eee, 0.8);
+                }
+                
+                span {
+                    position: absolute;
+                    top: 48%;
+                    left: 25%;
+                    width: 15px;
+                    height: 1px;
+                    background-color: #555;
+                    
+                    &:first-child {
+                        transform: rotate(45deg);
+                    }
+                    
+                    &:nth-child(2) {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main-content {
+    width: 93%;
+    min-height: 900px;
+}
+
+.folder {
+    margin: 15px auto 15px;
+    width: 95%;
+    height: 100vh;
+}
+
+.folder-top {
+    display: flex;
+    // overflow-x: auto;
+
+    &--over {
+        border-bottom: 1px solid #999;
+        height: 31px;
+    }
+}
+
+.folder-title {
+    cursor: pointer;
+    display: flex;
+
+    &__wrap {
+        border: 1px solid #999;
+        border-radius: 8px 8px 0 0;
+        height: 31px;
+        
+        &.is-active {
+            border-bottom: none;
+        }
+    }
+    
+    &__item {
+        position: relative;
+        margin: 0 8px;
+        padding: 5px 20px;
+
+        p {
+            font-size: 13px;
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+}
+
+.folder-content {
+    border: 1px solid #999;
+    border-top: none;
+    min-height: 840px;
+
+    &__container {
+        margin: 0 auto;
+        padding: 30px 15px;
+        width: 95%;
+    }
+
+    &__wrap {
+        display: none;
+
+        &.is-show {
+            display: block;
+        }
+    }
+}
+
+.add-idea {
+    padding-top: 30px;
+
+    &__button {
+        cursor: pointer;
+        position: relative;
+        margin: 0 auto;
+        background-color: #E57E36;
+        padding: 6px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        width: 300px;
+        color: #fff;
+        text-align: center;
+
+        span {
+            position: absolute;
+            top: 7px;
+            left: 17px;   
+        }
+    }
+}
+
+.folder-flex {
+    display: flex;
+    align-items: baseline;
+    overflow-x: auto;
+}
+
+.folder-item {
+    flex: 0 0 auto;
+    margin-right: 15px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    overflow: hidden;
+    border-radius: 8px;
+    width: 315px;
+
+    &__title {
+        padding: 12px 16px 0;;
+
+        p {
+            border-bottom: 1px solid #999;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
+
+    &__content {
+        padding: 7px 16px 12px;
+
+        p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    }
+}
+/*# sourceMappingURL=aedi.css.map */
