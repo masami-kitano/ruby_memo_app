@@ -49,6 +49,16 @@
         });
     });
     
+    $(function($){
+        $('.cat-delete-btn').click(function() {
+            $('.cat-delete-modal').css('display', 'block');
+        });
+        
+        $('.close-btn').click(function() {
+            $('.cat-delete-modal').css('display', 'none');
+        });
+    });
+    
     $(window).on('load',function(){
         $('#category:first-child').addClass('is-active');
     });
