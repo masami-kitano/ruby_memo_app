@@ -59,6 +59,16 @@
         });
     });
     
+    $(function($){
+        $('.add-idea__btn').click(function() {
+            $('.add-idea__form').css('display', 'block');
+        });
+        
+        $('.close-btn').click(function() {
+            $('.add-idea__form').css('display', 'none');
+        });
+    });
+    
     $(window).on('load',function(){
         $('#category:first-child').addClass('is-active');
     });

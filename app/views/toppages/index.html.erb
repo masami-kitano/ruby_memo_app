@@ -1,8 +1,8 @@
 <% if logged_in? %>
     <section class="main">
         <div class="main-menu">
-            <p class="cat-create-btn main-menu__button"><i class="fas fa-pen"></i></p>
-            <p class="cat-delete-btn main-menu__button"><i class="far fa-trash-alt"></i></p>
+            <p class="cat-create-btn main-menu__btn"><i class="fas fa-pen"></i></p>
+            <p class="cat-delete-btn main-menu__btn"><i class="far fa-trash-alt"></i></p>
             <div class="cat-create-modal main-menu__modal">
                 <div class="main-menu__modal__content create">
                     <%= form_with(model: @category, local: true) do |f| %>
@@ -52,10 +52,35 @@
                 </div>
                 <div class="folder-content">
                     <div class="add-idea">
-                        <p class="add-idea__button">
+                        <p class="add-idea__btn">
                             <span><i class="fas fa-plus"></i></span>
                             アイデアを追加する
                         </p>
+                        <div class="add-idea__form">
+                            <div class="add-idea__form__content create">
+                                <p class="cat-form-title">アイデアの作成</p>
+                                <%= form_with(model: @post, local: true) do |f| %>
+                                    <div class="idea-form-wrap">
+                                        <p class="idea-form-category">カテゴリー</p>
+                                        <%= f.collection_select(:category_ids, Category.all, :id, :name, {prompt: false}, {class: 'form-item category'}) do |category| %>
+                                        <% end %>
+                                    </div>
+                                    <div class="idea-form-wrap">
+                                    	<p class="idea-form-title">タイトル</p>
+                                    	<%= f.text_field :title, class: 'form-item title', placeholder: 'タイトルを入力' %>
+                                    </div>
+                                	<div class="idea-form-wrap">
+                                    	<p class="idea-form-content">内容</p>
+                                    	<%= f.text_area :content, class: 'form-item content', placeholder: '内容を入力' %>
+                                	</div>
+                                	<%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+                                <% end %>
+                                <div class="close-btn">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="folder-content__container">
                         <div class="folder-content__wrap is-show">
