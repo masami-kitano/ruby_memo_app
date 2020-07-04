@@ -71,6 +71,7 @@
     
     $(window).on('load',function(){
         $('#category:first-child').addClass('is-active');
+        $('.folder-content__wrap:first-child').addClass('is-show');
     });
     
 })($);

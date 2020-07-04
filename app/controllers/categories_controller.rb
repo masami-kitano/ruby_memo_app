@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :require_user_logged_in
+  before_action :set_category, only: [:edit, :update, :destroy]
   
   def create
     @category = current_user.categories.build(category_params)
@@ -21,6 +22,10 @@ class CategoriesController < ApplicationController
   end
   
   private
+  
+  def set_category
+    @category = Category.find(params[:id])
+  end
   
   def category_params
     params.require(:category).permit(:name)
