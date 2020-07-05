@@ -86,19 +86,18 @@
                         <% @categories.each do |category| %>
                             <div class="folder-content__wrap">
                                 <div class="folder-flex">
-                                    <div class="folder-item">
-                                        <div class="folder-item__wrap">
-                                            <% ideas = category.posts %>
-                                            <% ideas.each do |idea| %>
+                                    <% category.posts.where(user_id: @current_user.id).order(id: :desc).each do |idea| %>
+                                        <div class="folder-item">
+                                            <div class="folder-item__wrap">
                                                 <div class="folder-item__title">
                                                     <p><%= idea.title %></p>
                                                 </div>
                                                 <div class="folder-item__content">
                                                     <p><%= idea.content %></p>
                                                 </div>
-                                            <% end %>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <% end %>
                                 </div>
                             </div>
                         <% end %>
