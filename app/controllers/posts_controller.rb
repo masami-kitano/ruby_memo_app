@@ -1,26 +1,30 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:update, :destroy]
   
   def create
     @categories = Category.all
-    @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:success] = 'メッセージの投稿しました'
-      redirect_to root_url
+    
+    @post = current_user.posts.find_or_create_by(id: params[:id])
+    
+    if @post.new_record?
+      @post = current_user.posts.build(post_params)
+      if @post.save
+        flash[:success] = 'アイデアを投稿しました'
+        redirect_to root_url
+      else
+        @posts = current_user.posts.order(id: :desc)
+        flash.now[:danger] = 'アイデアの投稿に失敗しました。'
+        render 'toppages/index'
+      end
     else
-      @posts = current_user.posts.order(id: :desc)
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
-      render 'toppages/index'
+      @post.update(post_params)
     end
-  end
-
-  def update
   end
 
   def destroy
     @post.destroy
-    flash[:success] = 'メッセージの削除しました。'
+    flash[:success] = 'アイデアを削除しました。'
     redirect_back(fallback_location: root_path)
   end
   

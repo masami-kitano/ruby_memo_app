@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //
-//= require rails-ujs
+// require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
@@ -59,6 +59,7 @@
         });
     });
     
+    
     $(function($){
         $('.add-idea__btn').click(function() {
             $('.add-idea__form').css('display', 'block');
@@ -69,12 +70,23 @@
         });
     });
     
+    $(function($){
+        $('.item.modify-btn').click(function() {
+            $('.add-idea__form').css('display', 'block');
+        });
+        
+        $('.close-btn').click(function() {
+            $('.add-idea__form').css('display', 'none');
+        });
+    });
+    
+    
     $(window).on('load',function(){
         $('#category:first-child').addClass('is-active');
         $('.folder-content__wrap:first-child').addClass('is-show');
     });
     
-})($);
+})(jQuery);
 
 
 
