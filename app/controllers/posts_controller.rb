@@ -5,21 +5,22 @@ class PostsController < ApplicationController
   def create
     @categories = Category.all
     
-    @post = current_user.posts.find_or_create_by(id: params[:id])
-    
-    if @post.new_record?
-      @post = current_user.posts.build(post_params)
-      if @post.save
-        flash[:success] = 'アイデアを投稿しました'
-        redirect_to root_url
-      else
-        @posts = current_user.posts.order(id: :desc)
-        flash.now[:danger] = 'アイデアの投稿に失敗しました。'
-        render 'toppages/index'
-      end
+    @post = current_user.posts.build(post_params)
+    if @post.save
+      flash[:success] = 'アイデアを投稿しました'
+      redirect_to root_url
     else
-      @post.update(post_params)
+      @posts = current_user.posts.order(id: :desc)
+      flash.now[:danger] = 'アイデアの投稿に失敗しました。'
+      render 'toppages/index'
     end
+  end
+  
+  def update
+    @post = current_user.posts.find_or_create_by(id: params[:id])
+    @post.update(post_params)
+    flash[:success] = 'アイデアを更新しました'
+    redirect_to root_url
   end
 
   def destroy
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :category_id)
   end
   
-  def correst_user
+  def correct_user
     @post = current_user.posts.find_by(id: params[:id])
     unless @post
       redirect_to root_url

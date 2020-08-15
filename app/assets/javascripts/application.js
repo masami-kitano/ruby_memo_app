@@ -72,11 +72,11 @@
     
     $(function($){
         $('.item.modify-btn').click(function() {
-            $('.add-idea__form').css('display', 'block');
+            $('.folder-item__modify-modal').css('display', 'block');
         });
         
         $('.close-btn').click(function() {
-            $('.add-idea__form').css('display', 'none');
+            $('.folder-item__modify-modal').css('display', 'none');
         });
     });
     
