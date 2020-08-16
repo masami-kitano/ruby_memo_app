@@ -17,7 +17,6 @@ class PostsController < ApplicationController
   end
   
   def update
-    @post = current_user.posts.find_or_create_by(id: params[:id])
     @post.update(post_params)
     flash[:success] = 'アイデアを更新しました'
     redirect_to root_url

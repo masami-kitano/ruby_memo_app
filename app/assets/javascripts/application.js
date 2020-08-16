@@ -70,12 +70,27 @@
         });
     });
     
-    $(function($){
-        $('.item.modify-btn').click(function() {
-            $('.folder-item__modify-modal').css('display', 'block');
-        });
+    // $(function($){
+    //     $('.item.modify-btn').click(function() {
+    //         $('.folder-item__modify-modal').css('display', 'block');
+    //     });
         
-        $('.close-btn').click(function() {
+    //     $('.close-btn').click(function() {
+    //         $('.folder-item__modify-modal').css('display', 'none');
+    //     });
+    // });
+    
+    // 編集モーダル出しわけ
+    $(function($){
+    	$('.item.modify-btn').click(function() {
+    		var index = $('.item.modify-btn').index(this);
+    		$('.folder-item__modify-modal').css('display','none');
+    		$('.folder-item__modify-modal').eq(index).css('display','block');
+    		$('.item.modify-btn').removeClass('active');
+    		$(this).addClass('active');
+    	});
+    	
+    	$('.close-btn').click(function() {
             $('.folder-item__modify-modal').css('display', 'none');
         });
     });

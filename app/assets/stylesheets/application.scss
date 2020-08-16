@@ -304,6 +304,11 @@ a {
         height: 100vh;
         background-color: rgba(10, 10, 10, 0.6);
         
+        textarea {
+            resize: none;
+            height: 250px;
+        }
+        
         &__content {
             position: fixed;
             top: 50%;
@@ -311,10 +316,7 @@ a {
             transform: translate(-50%, -50%);
             padding: 10px;
             background-color: #fff;
-            
-            &.create {
-                width: 400px;
-            }
+            width: 40%;
             
             .idea-form-wrap {
                 margin-bottom: 10px;
@@ -444,7 +446,7 @@ a {
         top: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(10, 10, 10, 0.2);
+        background-color: rgba(10, 10, 10, 0.6);
         
         .modify-modal-content {
             position: fixed;
@@ -453,6 +455,16 @@ a {
             transform: translate(-50%, -50%);
             padding: 10px;
             background-color: #fff;
+            width: 40%;
+            
+            @include tab {
+                width: 85%;
+            }
+            
+            textarea {
+                resize: none;
+                height: 250px;
+            }
             
             &.create {
                 width: 400px;
