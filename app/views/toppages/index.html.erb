@@ -103,6 +103,9 @@
                                                         <% end %>
                                                     </div>
                                                 </div>
+                                                <div class="folder-item__create-user">
+                                                    <p>created by <%= idea.user.name %></p>
+                                                </div>
                                                 <div class="folder-item__modify-modal">
                                                     <div class="modify-modal-content">
                                                         <%= form_with(model: idea, local: true) do |f| %>
