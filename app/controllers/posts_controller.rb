@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       flash[:success] = 'アイデアを投稿しました'
       redirect_to root_url
     else
-      @posts = current_user.posts.order(id: :desc)
+      @posts = current_user.feed_posts.order(id: :desc)
       flash.now[:danger] = 'アイデアの投稿に失敗しました。'
       render 'toppages/index'
     end
