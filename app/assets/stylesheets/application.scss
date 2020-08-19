@@ -96,6 +96,7 @@ a {
         height: 48px;
         text-align: center;
         line-height: 48px;
+        color: #5e6268;
     }
     
     &__modal {
@@ -205,13 +206,14 @@ a {
     display: flex;
     margin: 24px 0;
     border: 1px solid #e0e0e0;
+    border-radius: 5px;
     padding: 16px 0;
     background: #fff;
     width: 100%;
     height: 84px;
     
     li.user {
-        
+        list-style: none;
     }
 }
 
@@ -237,6 +239,7 @@ a {
 
     &__wrap {
         border: 1px solid #e0e0e0;
+        border-radius: 5px 5px 0 0;
         height: 31px;
         
         &.is-active {
