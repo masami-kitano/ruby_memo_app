@@ -46,6 +46,9 @@
                     <div class="user__name">
                         <%= user.name %>
                     </div>
+                    <div class="relationships-area">
+                        <%= render 'relationships/follow_button', user: user %>
+                    </div>
                 </li>
                 <% end %>
             </ul>

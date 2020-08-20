@@ -14,6 +14,8 @@
  *= require_self
  */
  
+ @import "reset";
+ 
 $pc: 996px; // PC
 $tab: 680px; // タブレット
 $sp: 480px;  // スマホ
@@ -207,13 +209,43 @@ a {
     margin: 24px 0;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    padding: 16px 0;
+    padding: 10px 0;
     background: #fff;
     width: 100%;
-    height: 84px;
+    height: 102px;
     
-    li.user {
+    .user {
         list-style: none;
+        text-align: center;
+        padding-left: 10px;
+        
+        &__name {
+            height: 18px;
+        }
+        
+        .relationships-area {
+            .toggle-btn {
+                cursor: pointer;
+                outline: none;
+                border: none;
+                border-radius: 10px;
+                padding: 0 10px;
+                font-size: 12px;
+                color: #fff;
+                
+                &:hover {
+                    opacity: .7;
+                }
+                
+                &--hide {
+                    background: #eb5a46;
+                }
+                
+                &--show {
+                    background: #0079bf;
+                }
+            }
+        }
     }
 }
 
