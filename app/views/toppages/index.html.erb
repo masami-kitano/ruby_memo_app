@@ -123,31 +123,33 @@
                                                 <div class="folder-item__create-user">
                                                     <p>created by <%= idea.user.name %></p>
                                                 </div>
-                                                <div class="folder-item__modify-modal">
-                                                    <div class="modify-modal-content">
-                                                        <%= form_with(model: idea, local: true) do |f| %>
-                                                        <p class="cat-form-title">アイデアの更新</p>
-                                                            <div class="idea-form-wrap">
-                                                                <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
-                                                                <%= f.collection_select(:category_id, Category.all, :id, :name, { prompt: false }, {class: 'form-item category'}) do |category| %>
-                                                                <% end %>
+                                                <% if idea.user_id == current_user.id %>
+                                                    <div class="folder-item__modify-modal">
+                                                        <div class="modify-modal-content">
+                                                            <%= form_with(model: idea, local: true) do |f| %>
+                                                            <p class="cat-form-title">アイデアの更新</p>
+                                                                <div class="idea-form-wrap">
+                                                                    <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
+                                                                    <%= f.collection_select(:category_id, Category.all, :id, :name, { prompt: false }, {class: 'form-item category'}) do |category| %>
+                                                                    <% end %>
+                                                                </div>
+                                                                <div class="idea-form-wrap">
+                                                                	<p class="idea-form-title">タイトル</p>
+                                                                	<%= f.text_field :title, class: 'form-item title'%>
+                                                                </div>
+                                                            	<div class="idea-form-wrap">
+                                                                	<p class="idea-form-content">内容</p>
+                                                                	<%= f.text_area :content, class: 'form-item content' %>
+                                                            	</div>
+                                                            	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+                                                            <% end %>
+                                                            <div class="close-btn">
+                                                                <span></span>
+                                                                <span></span>
                                                             </div>
-                                                            <div class="idea-form-wrap">
-                                                            	<p class="idea-form-title">タイトル</p>
-                                                            	<%= f.text_field :title, class: 'form-item title'%>
-                                                            </div>
-                                                        	<div class="idea-form-wrap">
-                                                            	<p class="idea-form-content">内容</p>
-                                                            	<%= f.text_area :content, class: 'form-item content' %>
-                                                        	</div>
-                                                        	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
-                                                        <% end %>
-                                                        <div class="close-btn">
-                                                            <span></span>
-                                                            <span></span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <% end %>
                                             </div>
                                         </div>
                                     <% end %>
