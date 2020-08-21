@@ -483,6 +483,20 @@ a {
             margin-right: 10px;
             color: #5e6268;
             
+            &.unlike-btn {
+                button {
+                    color: #4080ff;
+                }
+            }
+            
+            button {
+                outline: none;
+                cursor: pointer;
+                background: none;
+                padding: 0;
+                color: #5e6268;
+            }
+            
             &:hover {
                 opacity: .7;
             }
