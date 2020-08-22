@@ -6,7 +6,7 @@
                 <i class="far fa-thumbs-up"></i>
             <% end %>
         <% end %>
-        <%= @count_post_likes %>
+        <p class="post-fav-count"><%= post.favorites.count %></p>
     </div>
 <% else %>
     <div class="item like-btn">
@@ -16,6 +16,6 @@
                 <i class="far fa-thumbs-up"></i>
             <% end %>
         <% end %>
-        <%= @count_post_likes %>
+        <p class="post-fav-count"><%= post.favorites.count %></p>
     </div>
 <% end %>

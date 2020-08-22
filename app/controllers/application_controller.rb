@@ -17,7 +17,4 @@ class ApplicationController < ActionController::Base
     @count_user_likes = user.favorites.count
   end
   
-  def fav_count(idea)
-    @count_post_likes = idea.favorites.count
-  end
 end

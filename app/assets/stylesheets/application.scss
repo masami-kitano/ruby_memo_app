@@ -483,6 +483,16 @@ a {
             margin-right: 10px;
             color: #5e6268;
             
+            &.like-btn, &.unlike-btn {
+                position: relative;
+                
+                .post-fav-count {
+                    position: absolute;
+                    top: 0;
+                    left: 14px;
+                }
+            }
+            
             &.unlike-btn {
                 button {
                     color: #4080ff;
