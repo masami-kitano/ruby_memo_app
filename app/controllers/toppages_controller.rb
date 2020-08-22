@@ -8,6 +8,7 @@ class ToppagesController < ApplicationController
       
       @post = current_user.posts.build
       
+      @comment = current_user.comments.build
     end
   end
 end
