@@ -495,6 +495,14 @@ a {
                 }
             }
             
+            &.comment-btn {
+                display: flex;
+                
+                .post-comment-count {
+                    padding-left: 3px;
+                }
+            }
+            
             &.unlike-btn {
                 button {
                     color: #4080ff;
@@ -524,6 +532,67 @@ a {
             margin-bottom: 0;
             font-size: 12px;
             color: #999;
+        }
+    }
+    
+    .comment-modal {
+        display: none;
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.6);
+        
+        &__content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            background-color: #fff;
+            width: 40%;
+            
+            @include tab {
+                width: 85%;
+            }
+            
+            textarea {
+                resize: none;
+                height: 250px;
+            }
+        }
+        
+        .close-btn {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 6px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            
+            &:hover {
+                background-color: rgba(#eee, 0.8);
+            }
+            
+            span {
+                position: absolute;
+                top: 48%;
+                left: 25%;
+                width: 15px;
+                height: 1px;
+                background-color: #555;
+                
+                &:first-child {
+                    transform: rotate(45deg);
+                }
+                
+                &:nth-child(2) {
+                    transform: rotate(-45deg);
+                }
+            }
         }
     }
     

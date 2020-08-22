@@ -1,0 +1,12 @@
+<div class="folder-top">
+    <div class="folder-title">
+        <% @categories.each do |category| %>
+            <div id="category" class="tab folder-title__wrap">
+                <div class="folder-title__item">
+                    <p><%= category.name %></p>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <div class="folder-top--over"></div>
+</div>

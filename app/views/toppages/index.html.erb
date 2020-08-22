@@ -1,102 +1,14 @@
 <% if logged_in? %>
     <section class="main">
         <div class="main-menu">
-            <p class="cat-create-btn main-menu__btn"><i class="fas fa-pen"></i></p>
-            <p class="cat-delete-btn main-menu__btn"><i class="far fa-trash-alt"></i></p>
-            <div class="cat-create-modal main-menu__modal">
-                <div class="main-menu__modal__content create">
-                    <%= form_with(model: @category, local: true) do |f| %>
-                        <p class="cat-form-title">カテゴリーの作成</p>
-                        <%= f.text_field :name, class: 'cat-form-content', placeholder: '新しいカテゴリーを作成' %>
-                        <%= f.submit '作成', class: 'cat-form-btn' %>
-                    <% end %>
-                    <div class="close-btn">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="cat-delete-modal main-menu__modal">
-                <div class="main-menu__modal__content delete">
-                    <p class="cat-form-title">カテゴリーの削除</p>
-                    <% @categories.each do |category| %>
-                        <p class="delete-cat">
-                            <%= category.name %>
-                            <span class="delete-btn">
-                                <%= link_to category, data: { confirm: "本当に削除してもよろしいですか?" }, class: 'delete-btn', :method => :delete do %>
-                                    <i class="far fa-trash-alt"></i>
-                                <% end %>
-                            </span>
-                        </p>
-                    <% end %>
-                    <div class="close-btn">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
+            <%= render 'categories/category'%>
         </div>
         <div class="main-content">
-            <ul class="user-container">
-                <% @users.each do |user| %>
-                <li class="user">
-                    <div class="user__icon">
-                        <img class="" src="<%= gravatar_url(user, { size: 40 }) %>" alt="">
-                    </div>
-                    <div class="user__name">
-                        <%= user.name %>
-                    </div>
-                    <div class="relationships-area">
-                        <%= render 'relationships/follow_button', user: user %>
-                    </div>
-                </li>
-                <% end %>
-            </ul>
+            <%= render 'users/users_top'%>
             <div class="folder">
-                <div class="folder-top">
-                    <div class="folder-title">
-                        <% @categories.each do |category| %>
-                            <div id="category" class="tab folder-title__wrap">
-                                <div class="folder-title__item">
-                                    <p><%= category.name %></p>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div>
-                    <div class="folder-top--over"></div>
-                </div>
+                <%= render 'categories/category_tab'%>
                 <div class="folder-content">
-                    <div class="add-idea">
-                        <p class="add-idea__btn">
-                            <span><i class="fas fa-plus"></i></span>
-                            アイデアを追加する
-                        </p>
-                        <div class="add-idea__form">
-                            <div class="add-idea__form__content create">
-                                <p class="cat-form-title">アイデアの作成</p>
-                                <%= form_with(model: @post, local: true) do |f| %>
-                                    <div class="idea-form-wrap">
-                                        <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
-                                        <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt: false}, {class: 'form-item category'}) do |category| %>
-                                        <% end %>
-                                    </div>
-                                    <div class="idea-form-wrap">
-                                    	<p class="idea-form-title">タイトル</p>
-                                    	<%= f.text_field :title, class: 'form-item title', placeholder: 'タイトルを入力' %>
-                                    </div>
-                                	<div class="idea-form-wrap">
-                                    	<p class="idea-form-content">内容</p>
-                                    	<%= f.text_area :content, class: 'form-item content', placeholder: '内容を入力' %>
-                                	</div>
-                                	<%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-                                <% end %>
-                                <div class="close-btn">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <%= render 'posts/post_create'%>
                     <div class="folder-content__container">
                         <% @categories.each do |category| %>
                             <div class="folder-content__wrap">
@@ -111,46 +23,13 @@
                                                     <p><%= idea.content %></p>
                                                 </div>
                                                 <div class="folder-item__menu">
-                                                    <% if idea.user_id == current_user.id %>
-                                                        <div class="item modify-btn"><i class="fas fa-pen"></i></div>
-                                                        <div class="item delete-btn">
-                                                            <%= link_to idea, data: { confirm: "本当に削除してもよろしいですか?" }, class: 'delete-btn', :method => :delete do %>
-                                                                <i class="far fa-trash-alt"></i>
-                                                            <% end %>
-                                                        </div>
-                                                    <% end %>
-                                                    <%= render 'favorites/like_button', post: idea %>
+                                                    <%= render 'favorites/like_button', idea: idea %>
+                                                    <%= render 'comments/comment', idea: idea %>
+                                                    <%= render 'posts/post_modify', idea: idea %>
                                                 </div>
                                                 <div class="folder-item__create-user">
                                                     <p><%= idea.user.name %></p>
                                                 </div>
-                                                <% if idea.user_id == current_user.id %>
-                                                    <div class="folder-item__modify-modal">
-                                                        <div class="modify-modal-content">
-                                                            <%= form_with(model: idea, local: true) do |f| %>
-                                                            <p class="cat-form-title">アイデアの更新</p>
-                                                                <div class="idea-form-wrap">
-                                                                    <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
-                                                                    <%= f.collection_select(:category_id, Category.all, :id, :name, { prompt: false }, {class: 'form-item category'}) do |category| %>
-                                                                    <% end %>
-                                                                </div>
-                                                                <div class="idea-form-wrap">
-                                                                	<p class="idea-form-title">タイトル</p>
-                                                                	<%= f.text_field :title, class: 'form-item title'%>
-                                                                </div>
-                                                            	<div class="idea-form-wrap">
-                                                                	<p class="idea-form-content">内容</p>
-                                                                	<%= f.text_area :content, class: 'form-item content' %>
-                                                            	</div>
-                                                            	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
-                                                            <% end %>
-                                                            <div class="close-btn">
-                                                                <span></span>
-                                                                <span></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <% end %>
                                             </div>
                                         </div>
                                     <% end %>

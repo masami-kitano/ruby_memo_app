@@ -1,0 +1,35 @@
+<% if idea.user_id == current_user.id %>
+    <div class="item modify-btn"><i class="fas fa-pen"></i></div>
+    <div class="item delete-btn">
+        <%= link_to idea, data: { confirm: "本当に削除してもよろしいですか?" }, class: 'delete-btn', :method => :delete do %>
+            <i class="far fa-trash-alt"></i>
+        <% end %>
+    </div>
+<% end %>
+<% if idea.user_id == current_user.id %>
+    <div class="folder-item__modify-modal">
+        <div class="modify-modal-content">
+            <%= form_with(model: idea, local: true) do |f| %>
+            <p class="cat-form-title">アイデアの更新</p>
+                <div class="idea-form-wrap">
+                    <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
+                    <%= f.collection_select(:category_id, Category.all, :id, :name, { prompt: false }, {class: 'form-item category'}) do |category| %>
+                    <% end %>
+                </div>
+                <div class="idea-form-wrap">
+                	<p class="idea-form-title">タイトル</p>
+                	<%= f.text_field :title, class: 'form-item title'%>
+                </div>
+            	<div class="idea-form-wrap">
+                	<p class="idea-form-content">内容</p>
+                	<%= f.text_area :content, class: 'form-item content' %>
+            	</div>
+            	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+            <% end %>
+            <div class="close-btn">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+<% end %>

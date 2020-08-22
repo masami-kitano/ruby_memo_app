@@ -1,21 +1,21 @@
-<% if current_user.like?(post) %>
+<% if current_user.like?(idea) %>
     <div class="item unlike-btn">
-        <%= form_with(model: current_user.favorites.find_by(post_id: post.id), local: true, method: :delete) do |f| %>
-            <%= hidden_field_tag :post_id, post.id %>
+        <%= form_with(model: current_user.favorites.find_by(post_id: idea.id), local: true, method: :delete) do |f| %>
+            <%= hidden_field_tag :post_id, idea.id %>
             <%= f.button :type => "submit", style: 'border-style: none;' do %>
                 <i class="far fa-thumbs-up"></i>
             <% end %>
         <% end %>
-        <p class="post-fav-count"><%= post.favorites.count %></p>
+        <p class="post-fav-count"><%= idea.favorites.count %></p>
     </div>
 <% else %>
     <div class="item like-btn">
         <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
-            <%= hidden_field_tag :post_id, post.id %>
+            <%= hidden_field_tag :post_id, idea.id %>
             <%= f.button :type => "submit", style: 'border-style: none;' do %>
                 <i class="far fa-thumbs-up"></i>
             <% end %>
         <% end %>
-        <p class="post-fav-count"><%= post.favorites.count %></p>
+        <p class="post-fav-count"><%= idea.favorites.count %></p>
     </div>
 <% end %>

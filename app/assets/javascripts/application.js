@@ -70,15 +70,20 @@
         });
     });
     
-    // $(function($){
-    //     $('.item.modify-btn').click(function() {
-    //         $('.folder-item__modify-modal').css('display', 'block');
-    //     });
+    // コメントモーダル
+    $(function($){
+        $('.item.comment-btn').click(function() {
+            var index = $('.item.comment-btn').index(this);
+    		$('.comment-modal').css('display','none');
+    		$('.comment-modal').eq(index).css('display','block');
+    		$('.item.comment-btn').removeClass('active');
+    		$(this).addClass('active');
+        });
         
-    //     $('.close-btn').click(function() {
-    //         $('.folder-item__modify-modal').css('display', 'none');
-    //     });
-    // });
+        $('.close-btn').click(function() {
+            $('.comment-modal').css('display', 'none');
+        });
+    });
     
     // 編集モーダル出しわけ
     $(function($){
