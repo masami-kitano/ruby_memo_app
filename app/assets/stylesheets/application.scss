@@ -475,21 +475,23 @@ a {
         position: absolute;
         bottom: 5px;
         left: 19px;
+        display: flex;
         
         .item {
             cursor: pointer;
-            display: inline-block;
             font-size: 12px;
-            margin-right: 10px;
-            color: #5e6268;
+            margin-right: 12px;
+            color: #aeb0b3;
+            
+            a.delete-btn {
+                color: #aeb0b3;
+            }
             
             &.like-btn, &.unlike-btn {
-                position: relative;
+                display: flex;
                 
                 .post-fav-count {
-                    position: absolute;
-                    top: 0;
-                    left: 14px;
+                    padding-left: 3px;
                 }
             }
             
@@ -504,7 +506,7 @@ a {
                 cursor: pointer;
                 background: none;
                 padding: 0;
-                color: #5e6268;
+                color: #aeb0b3;
             }
             
             &:hover {
