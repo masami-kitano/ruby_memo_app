@@ -24,7 +24,7 @@
                                                 </div>
                                                 <div class="folder-item__menu">
                                                     <%= render 'favorites/like_button', idea: idea %>
-                                                    <%= render 'comments/comment', idea: idea %>
+                                                    <%= render 'comments/comment', idea: idea, current_user: current_user %>
                                                     <%= render 'posts/post_modify', idea: idea %>
                                                 </div>
                                                 <div class="folder-item__create-user">

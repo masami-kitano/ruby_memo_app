@@ -3,12 +3,16 @@ class CommentsController < ApplicationController
   before_action :correct_user, only: [:update, :destroy]
   
   def create
-    @comments = current_user.comments.build(comments_params)
-    if @comments.save
+    @categories = Category.all
+    @users = User.all
+    
+    @comment = current_user.comments.build(comment_params)
+    if @comment.save
       flash[:success] = 'コメントを追加しました。'
       redirect_to root_url
     else
-      flash[:danger] = 'コメントを追加できませんでした。'
+      @comments = current_user.comments.order(id: :desc)
+      flash.now[:danger] = 'コメントを追加できませんでした。'
       render 'toppages/index'
     end
   end
@@ -27,7 +31,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def comments_params
+  def comment_params
     params.require(:comment).permit(:content)
   end
   

@@ -8,23 +8,33 @@
 </div>
 <div class="comment-modal">
     <div class="comment-modal__content">
-        <%= form_with(model: idea, local: true) do |f| %>
-        <p class="cat-form-title">アイデアの更新</p>
-            <div class="idea-form-wrap">
-                <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
-                <%= f.collection_select(:category_id, Category.all, :id, :name, { prompt: false }, {class: 'form-item category'}) do |category| %>
-                <% end %>
-            </div>
-            <div class="idea-form-wrap">
-            	<p class="idea-form-title">タイトル</p>
-            	<%= f.text_field :title, class: 'form-item title'%>
-            </div>
-        	<div class="idea-form-wrap">
-            	<p class="idea-form-content">内容</p>
-            	<%= f.text_area :content, class: 'form-item content' %>
-        	</div>
-        	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
-        <% end %>
+        <div class="idea-category">
+            <div class="label">カテゴリー</div>
+            <%= idea.category.name %>
+        </div>
+        <div class="idea-title">
+            <div class="label">タイトル</div>
+            <%= idea.title %>
+        </div>
+        <div class="idea-content">
+            <div class="label">内容</div>
+            <%= idea.content %>
+        </div>
+        <div class="comment-form">
+            <%= form_with(model: current_user.comments.build, local: true) do |f| %>
+                <div class="idea-form-wrap">
+                    <div class="label">コメント</div>
+                    <%= f.text_field :content, class: 'comment-area', placeholder: 'コメントを入力' %>
+                    <%= hidden_field_tag :post_id, idea.id %>
+                </div>
+            	<%= f.submit '保存', class: '' %>
+            <% end %>
+        </div>
+        <div class="idea-comments">
+           <% idea.comments.each do |comment| %>
+               <%= comment.content %>
+           <% end %>
+        </div>
         <div class="close-btn">
             <span></span>
             <span></span>
