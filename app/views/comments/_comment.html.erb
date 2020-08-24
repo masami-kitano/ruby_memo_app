@@ -21,11 +21,11 @@
             <%= idea.content %>
         </div>
         <div class="comment-form">
-            <%= form_with(model: current_user.comments.build, local: true) do |f| %>
+            <%= form_with(model: @comment, local: true) do |f| %>
                 <div class="idea-form-wrap">
                     <div class="label">コメント</div>
                     <%= f.text_field :content, class: 'comment-area', placeholder: 'コメントを入力' %>
-                    <%= hidden_field_tag :post_id, idea.id %>
+                    <%= f.hidden_field :post_id, value: idea.id %>
                 </div>
             	<%= f.submit '保存', class: '' %>
             <% end %>

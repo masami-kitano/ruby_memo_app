@@ -6,8 +6,9 @@ class CommentsController < ApplicationController
     @categories = Category.all
     @users = User.all
     
-    @comment = current_user.comments.build(comment_params)
-    if @comment.save
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    if @comment.save!
       flash[:success] = 'コメントを追加しました。'
       redirect_to root_url
     else
@@ -32,7 +33,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :post_id)
   end
   
   def correct_user
