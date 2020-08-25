@@ -546,7 +546,7 @@ a {
         background-color: rgba(10, 10, 10, 0.6);
         
         &__content {
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -560,7 +560,7 @@ a {
             
             textarea {
                 resize: none;
-                height: 250px;
+                min-height: 100px;
             }
         }
         

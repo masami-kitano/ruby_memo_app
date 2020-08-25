@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update
+    @comment.update(comment_params)
     flash[:success] = 'コメントを更新しました。'
     redirect_back(fallback_location: root_path)
   end

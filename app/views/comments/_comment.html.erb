@@ -24,7 +24,7 @@
             <%= form_with(model: @comment, local: true) do |f| %>
                 <div class="idea-form-wrap">
                     <div class="label">コメント</div>
-                    <%= f.text_field :content, class: 'comment-area', placeholder: 'コメントを入力' %>
+                    <%= f.text_area :content, class: 'comment-area', placeholder: 'コメントを入力' %>
                     <%= f.hidden_field :post_id, value: idea.id %>
                 </div>
             	<%= f.submit '保存', class: '' %>
@@ -33,6 +33,16 @@
         <div class="idea-comments">
            <% idea.comments.each do |comment| %>
                <%= comment.content %>
+               <%= link_to comment, data: { confirm: "本当に削除してもよろしいですか?" }, class: 'delete-btn', :method => :delete do %>
+                   <i class="far fa-trash-alt"></i>
+               <% end %>
+               <%= form_with(model: comment, local: true) do |f| %>
+                	<div class="idea-form-wrap">
+                    	<p class="idea-form-content">内容</p>
+                    	<%= f.text_area :content, class: 'form-item content' %>
+                	</div>
+                	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+               <% end %>
            <% end %>
         </div>
         <div class="close-btn">
