@@ -85,6 +85,20 @@
         });
     });
     
+    $(function($){
+        $('.comment-update-btn').click(function() {
+            var index = $('.comment-update-btn').index(this);
+            $('.current-user-comment-wrap').eq(index).css('display', 'none');
+            $('.current-user-comment-update-wrap').eq(index).css('display', 'block');
+        });
+        
+        $('.comment-update-close-btn').click(function() {
+            var index = $('.comment-update-close-btn').index(this);
+            $('.current-user-comment-update-wrap').eq(index).css('display', 'none');
+            $('.current-user-comment-wrap').eq(index).css('display', 'block');
+        });
+    });
+    
     // 編集モーダル出しわけ
     $(function($){
     	$('.item.modify-btn').click(function() {

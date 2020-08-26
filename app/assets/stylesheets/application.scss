@@ -545,22 +545,137 @@ a {
         height: 100vh;
         background-color: rgba(10, 10, 10, 0.6);
         
+        textarea {
+            border: 1px solid #dfe1e8;
+            padding: 8px 12px;
+            width: 100%;
+            // resize: none;
+            min-height: 40px;
+        }
+        
+        input[type=submit] {
+            cursor: pointer;
+            border-radius: 3px;
+            background-color: #5aac44;
+            box-shadow: none;
+            border: none;
+            color: #fff;
+            font-weight: 400;
+            line-height: 20px;
+            margin: 8px 4px 0 0;
+            padding: 6px 12px;
+            text-align: center;
+            
+            &:hover {
+                opacity: .7;
+            }
+        }
+        
         &__content {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 10px;
-            background-color: #fff;
+            background-color: #f4f5f7;
             width: 40%;
             
             @include tab {
                 width: 85%;
             }
             
-            textarea {
-                resize: none;
-                min-height: 100px;
+            .label {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            
+            .idea-title {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            
+            .idea-category {
+                font-size: 14px;
+                color: #5e6c84;
+                margin-bottom: 15px;
+            }
+            
+            .idea-content {
+                .content {
+                    margin-bottom: 15px;
+                    background: #dfe1e8;
+                    border-radius: 3px;
+                    padding: 8px 12px;
+                    min-height: 40px;
+                    font-size: 14px;
+                }
+            }
+            
+            .idea-comments {
+                .comment-update-wrap {
+                    display: none;
+                    position: relative;
+                    
+                    input[type=submit] {
+                        margin-bottom: 10px;
+                    }
+                    
+                    .comment-update-close-btn {
+                        cursor: pointer;
+                        position: absolute;
+                        right: 10px;
+                        top: 6px;
+                        border-radius: 50%;
+                        width: 30px;
+                        height: 30px;
+                        
+                        &:hover {
+                            background-color: rgba(#eee, 0.8);
+                        }
+                        
+                        span {
+                            position: absolute;
+                            top: 48%;
+                            left: 25%;
+                            width: 15px;
+                            height: 1px;
+                            background-color: #555;
+                            
+                            &:first-child {
+                                transform: rotate(45deg);
+                            }
+                            
+                            &:nth-child(2) {
+                                transform: rotate(-45deg);
+                            }
+                        }
+                    }
+                }
+                
+                .comment-wrap {
+                    margin-bottom: 10px;
+                }
+                
+                .comment {
+                    background-color: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e8;
+                    box-shadow: 0 1px 2px -1px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08);
+                    box-sizing: border-box;
+                    margin: 4px 2px 4px 0;
+                    padding: 8px 12px;
+                    max-width: 100%;
+                    font-size: 14px;
+                }
+                
+                .item {
+                    display: inline-block;
+                }
+            }
+            
+            .comment-form {
+                margin-bottom: 15px;
             }
         }
         

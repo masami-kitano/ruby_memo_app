@@ -8,17 +8,15 @@
 </div>
 <div class="comment-modal">
     <div class="comment-modal__content">
-        <div class="idea-category">
-            <div class="label">カテゴリー</div>
-            <%= idea.category.name %>
-        </div>
         <div class="idea-title">
-            <div class="label">タイトル</div>
             <%= idea.title %>
+        </div>
+        <div class="idea-category">
+            カテゴリー：<%= idea.category.name %>
         </div>
         <div class="idea-content">
             <div class="label">内容</div>
-            <%= idea.content %>
+            <div class="content"><%= idea.content %></div>
         </div>
         <div class="comment-form">
             <%= form_with(model: @comment, local: true) do |f| %>
@@ -31,19 +29,40 @@
             <% end %>
         </div>
         <div class="idea-comments">
-           <% idea.comments.each do |comment| %>
-               <%= comment.content %>
-               <%= link_to comment, data: { confirm: "本当に削除してもよろしいですか?" }, class: 'delete-btn', :method => :delete do %>
-                   <i class="far fa-trash-alt"></i>
-               <% end %>
-               <%= form_with(model: comment, local: true) do |f| %>
-                	<div class="idea-form-wrap">
-                    	<p class="idea-form-content">内容</p>
+            <div class="label">コメントログ</div>
+            <% idea.comments.each do |comment| %>
+                <% if comment.user_id == current_user.id %>
+                <div class="comment-wrap current-user-comment-wrap">
+                <% else %>
+                <div class="comment-wrap">
+                <% end %>
+                    <div class="comment">
+                        <%= comment.content %>
+                    </div>
+                    <% if comment.user_id == current_user.id %>
+                        <div class="item comment-update-btn">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <div class="item">
+                        <%= link_to comment, data: { confirm: "本当に削除してもよろしいですか?" }, class: 'delete-btn', :method => :delete do %>
+                           <i class="far fa-trash-alt"></i>
+                        <% end %>
+                        </div>
+                    <% end %>
+                </div>
+                <% if comment.user_id == current_user.id %>
+                <div class="comment-update-wrap current-user-comment-update-wrap">
+                    <%= form_with(model: comment, local: true) do |f| %>
                     	<%= f.text_area :content, class: 'form-item content' %>
-                	</div>
-                	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
-               <% end %>
-           <% end %>
+                    	<%= f.submit '保存', class: '' %>
+                    <% end %>
+                    <div class="comment-update-close-btn">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <% end %>
+            <% end %>
         </div>
         <div class="close-btn">
             <span></span>
