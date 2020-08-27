@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   
   def create
     @categories = Category.all
+    @users = User.all
     
     @post = current_user.posts.build(post_params)
     if @post.save

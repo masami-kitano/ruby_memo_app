@@ -6,8 +6,7 @@ class CommentsController < ApplicationController
     @categories = Category.all
     @users = User.all
     
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:success] = 'コメントを追加しました。'
       redirect_to root_url

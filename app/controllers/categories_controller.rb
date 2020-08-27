@@ -3,14 +3,15 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
   
   def create
+    @users = User.all
     @category = current_user.categories.build(category_params)
     if @category.save
       flash[:success] = 'カテゴリーを追加しました'
-      redirect_to root_url
+      redirect_back(fallback_location: root_path)
     else
       @categories = Category.all
-      flash.now[:danger] = 'カテゴリーの追加に失敗しました'
-      render 'toppages/index'
+      flash[:danger] = 'カテゴリーの追加に失敗しました'
+      redirect_back(fallback_location: root_path)
     end
   end
 
