@@ -1,11 +1,11 @@
 <p class="cat-create-btn main-menu__btn"><i class="fas fa-pen"></i></p>
 <p class="cat-delete-btn main-menu__btn"><i class="far fa-trash-alt"></i></p>
-<div class="cat-create-modal main-menu__modal">
-    <div class="main-menu__modal__content create">
+<div class="window cat-create-modal main-menu__modal">
+    <div class="window__content main-menu__modal__content create">
         <%= form_with(model: @category, local: true) do |f| %>
-            <p class="cat-form-title">カテゴリーの作成</p>
+            <p class="window__content__title">カテゴリーの作成</p>
             <%= f.text_field :name, class: 'cat-form-content', placeholder: '新しいカテゴリーを作成' %>
-            <%= f.submit '作成', class: 'cat-form-btn' %>
+            <%= f.submit '保存', class: 'cat-form-btn' %>
         <% end %>
         <div class="close-btn">
             <span></span>
@@ -13,9 +13,9 @@
         </div>
     </div>
 </div>
-<div class="cat-delete-modal main-menu__modal">
-    <div class="main-menu__modal__content delete">
-        <p class="cat-form-title">カテゴリーの削除</p>
+<div class="window cat-delete-modal main-menu__modal">
+    <div class="window__content main-menu__modal__content delete">
+        <p class="window__content__title">カテゴリーの削除</p>
         <% @categories.each do |category| %>
             <p class="delete-cat">
                 <%= category.name %>

@@ -3,24 +3,24 @@
         <span><i class="fas fa-plus"></i></span>
         アイデアを追加する
     </p>
-    <div class="add-idea__form">
-        <div class="add-idea__form__content create">
-            <p class="cat-form-title">アイデアの作成</p>
+    <div class="window add-idea__form">
+        <div class="window__content add-idea__form__content create">
+            <p class="window__content__title">アイデアの作成</p>
             <%= form_with(model: @post, local: true) do |f| %>
                 <div class="idea-form-wrap">
-                    <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
+                    <%= f.label :category_id, 'カテゴリー名', class: 'label' %>
                     <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt: false}, {class: 'form-item category'}) do |category| %>
                     <% end %>
                 </div>
                 <div class="idea-form-wrap">
-                	<p class="idea-form-title">タイトル</p>
+                	<p class="label">タイトル</p>
                 	<%= f.text_field :title, class: 'form-item title', placeholder: 'タイトルを入力' %>
                 </div>
             	<div class="idea-form-wrap">
-                	<p class="idea-form-content">内容</p>
+                	<p class="label">内容</p>
                 	<%= f.text_area :content, class: 'form-item content', placeholder: '内容を入力' %>
             	</div>
-            	<%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+            	<%= f.submit '保存'%>
             <% end %>
             <div class="close-btn">
                 <span></span>

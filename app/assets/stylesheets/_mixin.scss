@@ -1,0 +1,134 @@
+$pc: 996px; // PC
+$tab: 680px; // タブレット
+$sp: 480px;  // スマホ
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
+@mixin window-content {
+    .window {
+        display: none;
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.6);
+        
+        textarea {
+            border: 1px solid #dfe1e8;
+            border-radius: 5px;
+            padding: 8px 12px;
+            width: 100%;
+            // resize: none;
+            min-height: 40px;
+        }
+        
+        select {
+            border: 1px solid #dfe1e8;
+            border-radius: 5px;
+            padding: 8px 12px;
+            width: 100%;
+            height: 40px;
+        }
+        
+        input[type=text] {
+            border: 1px solid #dfe1e8;
+            border-radius: 5px;
+            padding: 8px 12px;
+            width: 100%;
+            min-height: 40px;
+        }
+        
+        input[type=submit] {
+            cursor: pointer;
+            border-radius: 3px;
+            background-color: #5aac44;
+            box-shadow: none;
+            border: none;
+            color: #fff;
+            font-weight: 400;
+            line-height: 20px;
+            margin: 8px 4px 0 0;
+            padding: 6px 12px;
+            text-align: center;
+            
+            &:hover {
+                opacity: .7;
+            }
+        }
+        
+        &__content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f4f5f7;
+            width: 40%;
+            
+            @include tab {
+                width: 85%;
+            }
+            
+            &__title {
+                margin-bottom: 10px;
+                border-bottom: 1px solid #dfe1e8;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            
+            .label {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+            
+            .close-btn {
+                cursor: pointer;
+                position: absolute;
+                right: 10px;
+                top: 6px;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                
+                &:hover {
+                    background-color: rgba(#eee, 0.8);
+                }
+                
+                span {
+                    position: absolute;
+                    top: 48%;
+                    left: 25%;
+                    width: 15px;
+                    height: 1px;
+                    background-color: #555;
+                    
+                    &:first-child {
+                        transform: rotate(45deg);
+                    }
+                    
+                    &:nth-child(2) {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

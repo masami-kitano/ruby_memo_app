@@ -7,24 +7,24 @@
     </div>
 <% end %>
 <% if idea.user_id == current_user.id %>
-    <div class="folder-item__modify-modal">
-        <div class="modify-modal-content">
+    <div class="window folder-item__modify-modal">
+        <div class="window__content modify-modal-content">
             <%= form_with(model: idea, local: true) do |f| %>
-            <p class="cat-form-title">アイデアの更新</p>
+            <p class="window__content__title">アイデアの更新</p>
                 <div class="idea-form-wrap">
-                    <%= f.label :category_id, 'カテゴリー名', class: 'idea-form-category' %>
+                    <%= f.label :category_id, 'カテゴリー名', class: 'label' %>
                     <%= f.collection_select(:category_id, Category.all, :id, :name, { prompt: false }, {class: 'form-item category'}) do |category| %>
                     <% end %>
                 </div>
                 <div class="idea-form-wrap">
-                	<p class="idea-form-title">タイトル</p>
+                	<p class="label">タイトル</p>
                 	<%= f.text_field :title, class: 'form-item title'%>
                 </div>
             	<div class="idea-form-wrap">
-                	<p class="idea-form-content">内容</p>
+                	<p class="label">内容</p>
                 	<%= f.text_area :content, class: 'form-item content' %>
             	</div>
-            	<%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+            	<%= f.submit '保存'%>
             <% end %>
             <div class="close-btn">
                 <span></span>

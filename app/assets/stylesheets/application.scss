@@ -14,27 +14,7 @@
  *= require_self
  */
  
- @import "reset";
- 
-$pc: 996px; // PC
-$tab: 680px; // タブレット
-$sp: 480px;  // スマホ
-
-@mixin pc {
-  @media (max-width: ($pc)) {
-    @content;
-  }
-}
-@mixin tab {
-  @media (max-width: ($tab)) {
-    @content;
-  }
-}
-@mixin sp {
-  @media (max-width: ($sp)) {
-    @content;
-  }
-}
+@import 'reset', 'mixin';
 
 body {
     min-height: 100vh;
@@ -45,6 +25,8 @@ a {
     text-decoration: none;
     color: #333;
 }
+
+
 
 .header {
     display: flex;
@@ -101,45 +83,28 @@ a {
         color: #5e6268;
     }
     
+    @include window-content;
+    
     &__modal {
-        display: none;
-        z-index: 100;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(10, 10, 10, 0.6);
-        
         &__content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px;
-            background-color: #fff;
-            
-            &.create {
-                width: 300px;
-                height: 120px;
-            }
-            
             &.delete {
                 overflow-y: auto;
-                width: 300px;
-                max-height: 300px;
                 
                 p.delete-cat {
-                    position: relative;
-                    border-bottom: 1px solid #b1aeae;
+                    margin-bottom: 15px;
+                    background: #dfe1e8;
+                    border-radius: 3px;
+                    padding: 8px 12px;
+                    min-height: 40px;
                     font-size: 14px;
                     
                     span.delete-btn {
                         cursor: pointer;
                         position: absolute;
-                        right: 10px;
+                        right: 21px;
                         color: #b1aeae;
                         font-size: 12px;
+                        color: #5e6268;
                         
                         &:hover {
                             color: #000;
@@ -149,52 +114,8 @@ a {
             }
             
             .cat-form-content {
-                margin-bottom: 10px;
                 width: 100%;
                 font-size: 14px;
-            }
-            
-            .cat-form-btn {
-                cursor: pointer;
-                margin-left: auto;
-                background-color: #fff;
-                border: none;
-                display: block;
-                
-                &:hover {
-                    background-color: rgba(#eee, 0.8);
-                }
-            }
-            
-            .close-btn {
-                cursor: pointer;
-                position: absolute;
-                right: 10px;
-                top: 6px;
-                border-radius: 50%;
-                width: 30px;
-                height: 30px;
-                
-                &:hover {
-                    background-color: rgba(#eee, 0.8);
-                }
-                
-                span {
-                    position: absolute;
-                    top: 48%;
-                    left: 25%;
-                    width: 15px;
-                    height: 1px;
-                    background-color: #555;
-                    
-                    &:first-child {
-                        transform: rotate(45deg);
-                    }
-                    
-                    &:nth-child(2) {
-                        transform: rotate(-45deg);
-                    }
-                }
             }
         }
     }
@@ -345,32 +266,12 @@ a {
         }
     }
     
+    @include window-content;
+    
     &__form {
-        display: none;
-        z-index: 100;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(10, 10, 10, 0.6);
-        
-        textarea {
-            resize: none;
-            height: 250px;
-        }
-        
         &__content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px;
-            background-color: #fff;
-            width: 40%;
-            
             .idea-form-wrap {
-                margin-bottom: 10px;
+                margin-top: 15px;
                 
                 p {
                     margin-bottom: 5px;
@@ -382,37 +283,6 @@ a {
                 
                 &.category {
                     font-size: 14px;
-                }
-            }
-            
-            .close-btn {
-                cursor: pointer;
-                position: absolute;
-                right: 10px;
-                top: 6px;
-                border-radius: 50%;
-                width: 30px;
-                height: 30px;
-                
-                &:hover {
-                    background-color: rgba(#eee, 0.8);
-                }
-                
-                span {
-                    position: absolute;
-                    top: 48%;
-                    left: 25%;
-                    width: 15px;
-                    height: 1px;
-                    background-color: #555;
-                    
-                    &:first-child {
-                        transform: rotate(45deg);
-                    }
-                    
-                    &:nth-child(2) {
-                        transform: rotate(-45deg);
-                    }
                 }
             }
         }
@@ -535,61 +405,10 @@ a {
         }
     }
     
+    @include window-content;
+    
     .comment-modal {
-        display: none;
-        z-index: 100;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(10, 10, 10, 0.6);
-        
-        textarea {
-            border: 1px solid #dfe1e8;
-            padding: 8px 12px;
-            width: 100%;
-            // resize: none;
-            min-height: 40px;
-        }
-        
-        input[type=submit] {
-            cursor: pointer;
-            border-radius: 3px;
-            background-color: #5aac44;
-            box-shadow: none;
-            border: none;
-            color: #fff;
-            font-weight: 400;
-            line-height: 20px;
-            margin: 8px 4px 0 0;
-            padding: 6px 12px;
-            text-align: center;
-            
-            &:hover {
-                opacity: .7;
-            }
-        }
-        
         &__content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px;
-            background-color: #f4f5f7;
-            width: 40%;
-            
-            @include tab {
-                width: 85%;
-            }
-            
-            .label {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-            
             .idea-title {
                 font-size: 18px;
                 font-weight: bold;
@@ -678,73 +497,16 @@ a {
                 margin-bottom: 15px;
             }
         }
-        
-        .close-btn {
-            cursor: pointer;
-            position: absolute;
-            right: 10px;
-            top: 6px;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            
-            &:hover {
-                background-color: rgba(#eee, 0.8);
-            }
-            
-            span {
-                position: absolute;
-                top: 48%;
-                left: 25%;
-                width: 15px;
-                height: 1px;
-                background-color: #555;
-                
-                &:first-child {
-                    transform: rotate(45deg);
-                }
-                
-                &:nth-child(2) {
-                    transform: rotate(-45deg);
-                }
-            }
-        }
     }
     
     &__modify-modal {
-        display: none;
-        z-index: 100;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(10, 10, 10, 0.6);
-        
         .modify-modal-content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px;
-            background-color: #fff;
-            width: 40%;
-            
-            @include tab {
-                width: 85%;
-            }
-            
-            textarea {
-                resize: none;
-                height: 250px;
-            }
-            
             &.create {
                 width: 400px;
             }
             
             .idea-form-wrap {
-                margin-bottom: 10px;
+                margin-top: 15px;
                 
                 p {
                     margin-bottom: 5px;
@@ -756,37 +518,6 @@ a {
                 
                 &.category {
                     font-size: 14px;
-                }
-            }
-            
-            .close-btn {
-                cursor: pointer;
-                position: absolute;
-                right: 10px;
-                top: 6px;
-                border-radius: 50%;
-                width: 30px;
-                height: 30px;
-                
-                &:hover {
-                    background-color: rgba(#eee, 0.8);
-                }
-                
-                span {
-                    position: absolute;
-                    top: 48%;
-                    left: 25%;
-                    width: 15px;
-                    height: 1px;
-                    background-color: #555;
-                    
-                    &:first-child {
-                        transform: rotate(45deg);
-                    }
-                    
-                    &:nth-child(2) {
-                        transform: rotate(-45deg);
-                    }
                 }
             }
         }
