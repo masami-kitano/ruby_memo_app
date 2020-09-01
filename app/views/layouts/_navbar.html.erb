@@ -1,26 +1,16 @@
 <header>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <%= link_to 'aedi', root_path, class: 'navbar-brand', data: {"turbolinks"=>false} %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <% if logged_in? %>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user) %></li>
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
-            </ul>
-          </li>
-        <% else %>
-          <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
-        <% end %>
-      </ul>
+  <nav class="aedi-nav">
+    <div class="logo-area">
+      <%= link_to 'aedi', root_path, class: '', data: {"turbolinks"=>false} %>
     </div>
+    <ul class="nav-menu">
+      <% if logged_in? %>
+        <li class="nav-menu__item profile"><%= link_to 'プロフィール', user_path(current_user) %></li>
+        <li class="nav-menu__item logout"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+      <% else %>
+        <li class="nav-menu__item account"><%= link_to 'アカウントを作成', signup_path, class: '' %></li>
+        <li class="nav-menu__item login"><%= link_to 'ログイン', login_path, class: '' %></li>
+      <% end %>
+    </ul>
   </nav>
 </header>
