@@ -203,6 +203,23 @@ header {
             height: 18px;
         }
         
+        &__icon {
+            border: 1px solid #e0e0e0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            img {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+            }
+            
+            img.default-img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
         .relationships-area {
             .toggle-btn {
                 cursor: pointer;
@@ -577,6 +594,69 @@ header {
                 &.category {
                     font-size: 14px;
                 }
+            }
+        }
+    }
+}
+
+// ユーザー詳細ページ
+.user-detail {
+    .user {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 50px;
+        background: #f4f5f7;
+        
+        &__img {
+            margin-right: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 50%;
+            img {
+                border-radius: 50%;
+            }
+            
+            img.default-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        &__name {
+            font-size: 20px;
+        }
+        
+        &__idea-count {
+            display: block;
+            padding: 20px 0 0 0;
+            width: 100%;
+            text-align: center;
+            color: #aeb0b3;
+        }
+    }
+    
+    .user-idea-wrap {
+        width: 996px;
+        margin: 0 auto;
+        
+        @include pc {
+            width: 100%;
+        }
+        
+        @include tab {
+            width: 100%;
+        }
+        
+        .folder-item {
+            width: calc(100% / 3 - 15px);
+            
+            @include tab {
+                width: calc(100% / 2 - 15px);
+            }
+            
+            @include sp {
+                width: calc(100% - 15px);
             }
         }
     }
