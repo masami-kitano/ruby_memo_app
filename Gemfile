@@ -66,3 +66,8 @@ gem 'kaminari'
 gem "jquery-rails"
 
 gem 'pry-rails'
+
+gem 'carrierwave'
+
+#画像のリサイズ
+gem 'mini_magick'

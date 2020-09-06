@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_013800) do
+ActiveRecord::Schema.define(version: 2020_09_03_115845) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -61,12 +61,29 @@ ActiveRecord::Schema.define(version: 2020_08_22_013800) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
+  create_table "spaces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
+  end
+
+  create_table "userspaces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "space_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id", "user_id"], name: "index_userspaces_on_space_id_and_user_id", unique: true
+    t.index ["space_id"], name: "index_userspaces_on_space_id"
+    t.index ["user_id"], name: "index_userspaces_on_user_id"
   end
 
   add_foreign_key "categories", "users"
@@ -78,4 +95,6 @@ ActiveRecord::Schema.define(version: 2020_08_22_013800) do
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "userspaces", "spaces"
+  add_foreign_key "userspaces", "users"
 end

@@ -28,7 +28,11 @@
                                                     <%= render 'posts/post_modify', idea: idea %>
                                                 </div>
                                                 <div class="folder-item__create-user">
-                                                    <p><%= idea.user.name %></p>
+                                                    <% if idea.user.image? %>                                                              
+                                                        <%= image_tag idea.user.image.thumb.url %>
+                                                    <% else %>
+                                                        <%= image_tag "default_user.png", class: "default-img" %>
+                                                    <% end %>
                                                 </div>
                                             </div>
                                         </div>
@@ -42,10 +46,20 @@
         </div>
     </section>
 <% else %>
-    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     <div class="main-top">
         <div class="main-top__img">
-            <img src="../assets/images/main-top.jpg">
+            <%= image_tag 'top-main.jpg', class: "top-main-img" %>
+            <!--<a href='https://jp.freepik.com/vectors/people'>Pch.vector - jp.freepik.com によって作成された people ベクトル</a>-->
         </div>
+        <div class="main-top__txt">
+            <p>Aedi(エーディ）を使えば、チームのアイデアを一つにまとめ、共有することができます。<br>
+            日々頭の中に浮かんでいるアイデアをチームで共有することでそのそのアイデアが大きな成果をもたらすかもしれません。
+            誰かが共有したアイデアにコメントし、フィードバックすることも簡単です。<br>
+            さあ、アイデアをシェアしましょう。
+            </p>
+        </div>
+    </div>
+    <div class="start-link">
+        <%= link_to 'Aediを使ってみる！', signup_path %>
     </div>
 <% end %>

@@ -33,7 +33,7 @@ a {
 }
 
 header {
-    background: linear-gradient(to right, darken( #096fc8, 5% ), lighten( #096fc8, 5% ));
+    background: #34495e;
     width: 100%;
     height: 80px;
     color: #fff;
@@ -66,15 +66,17 @@ header {
                margin-right: 30px;
               
                a {
-                   border: 2px solid #fff;
+                   border: 2px solid  #aebac7;
                    border-radius: 5px;
                    padding: 10px 20px;
-                   background: #096fc8;
-                   color: #fff;
+                   background: #34495e;
+                   color: #aebac7;
+                   font-size: 14px;
+                   font-weight: bold;
                    
                    &:hover {
-                       background: #fff;
-                       color: #096fc8;
+                       background: #aebac7;
+                       color: #34495e;
                        text-decoration: none;
                    }
                }
@@ -112,6 +114,45 @@ header {
 .main {
     display: flex;
     background: #fafafa;
+}
+
+.main-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 auto 30px;
+    padding: 20px 60px;
+    max-width: 1200px;
+    width: 100%;
+    
+    &__img {
+        width: 50%;
+        
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    
+    &__txt {
+        width: 50%;
+        padding: 0 20px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+
+.start-link {
+    text-align: center;
+    
+    a {
+        padding: 15px 30px;
+        border-radius: 30px;
+        border: 1px solid #4080ff;
+        background: #4080ff;
+        color: #fff;
+        font-size: 25px;
+    }
 }
 
 .main-menu {
@@ -192,15 +233,39 @@ header {
     padding: 10px 0;
     background: #fff;
     width: 100%;
-    height: 102px;
+    height: 92px;
     
     .user {
         list-style: none;
         text-align: center;
-        padding-left: 10px;
+        width: 50px;
         
         &__name {
-            height: 18px;
+            padding: 0 2px;
+            height: 14px;
+            overflow: hidden;
+            text-align: center;
+            text-overflow: ellipsis;
+            font-size: 12px;
+        }
+        
+        &__icon {
+            border-radius: 50%;
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            img {
+                border-radius: 50%;
+                border: 1px solid #e0e0e0;
+                width: 40px;
+                height: 40px;
+            }
+            
+            img.default-img {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+            }
         }
         
         .relationships-area {
@@ -208,9 +273,10 @@ header {
                 cursor: pointer;
                 outline: none;
                 border: none;
-                border-radius: 10px;
-                padding: 0 10px;
-                font-size: 12px;
+                border-radius: 50%;
+                padding: 0px 5px;
+                margin-top: 5px;
+                font-size: 7px;
                 color: #fff;
                 
                 &:hover {
@@ -218,11 +284,11 @@ header {
                 }
                 
                 &--hide {
-                    background: #eb5a46;
+                    background: #4080ff;
                 }
                 
                 &--show {
-                    background: #0079bf;
+                    background: #dee0e2;
                 }
             }
         }
@@ -454,12 +520,22 @@ header {
     &__create-user {
         position: absolute;
         bottom: 5px;
-        right: 19px;
+        right: 15px;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
         
-        p {
-            margin-bottom: 0;
-            font-size: 12px;
-            color: #999;
+        img {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+        
+        img.default-img {
+            border-radius: 50%;
+            border: 1px solid #e0e0e0;
+            width: 20px;
+            height: 20px;
         }
     }
     
@@ -577,6 +653,70 @@ header {
                 &.category {
                     font-size: 14px;
                 }
+            }
+        }
+    }
+}
+
+// ユーザー詳細ページ
+.user-detail {
+    .user {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 50px;
+        background: #f4f5f7;
+        
+        &__img {
+            margin-right: 30px;
+            border-radius: 50%;
+            img {
+                border-radius: 50%;
+            }
+            
+            img.default-img {
+                border-radius: 50%;
+                border: 1px solid #e0e0e0;
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        &__name {
+            font-size: 20px;
+        }
+        
+        &__idea-count {
+            display: block;
+            padding: 20px 0 0 0;
+            width: 100%;
+            text-align: center;
+            color: #aeb0b3;
+        }
+    }
+    
+    .user-idea-wrap {
+        width: 996px;
+        margin: 0 auto;
+        
+        @include pc {
+            width: 100%;
+        }
+        
+        @include tab {
+            width: 100%;
+        }
+        
+        .folder-item {
+            width: calc(100% / 3 - 15px);
+            
+            @include tab {
+                width: calc(100% / 2 - 15px);
+            }
+            
+            @include sp {
+                width: calc(100% - 15px);
             }
         }
     }

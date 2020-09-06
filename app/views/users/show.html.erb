@@ -1,21 +1,41 @@
-<div class="row">
-  <aside class="col-sm-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title"><%= @user.name %></h3>
-      </div>
-      <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
-      </div>
+<div class="user-detail">
+  <div class="user">
+    <div class="user__img">
+      <% if @user.image? %>                                                              
+        <%= image_tag @user.image.thumb50.url %>
+      <% else %>
+        <%= image_tag 'default_user.png', class: "default-img" %>
+      <% end %>
     </div>
-    <%= render 'relationships/follow_button', user: @user %>
-  </aside>
-  <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Posts  <span class="badge badge-secondary"><%= @count_posts %></span></a></li>
-      <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">Followings  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
-      <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">Followers  <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
-    </ul>
-    <%= render 'posts/posts', posts: @posts %>
+    <h3 class="user__name"><%= @user.name %></h3>
+    <div class="user__idea-count">投稿数：<%= @count_posts %></div>
+  </div>
+  <div class="user-idea-wrap">
+    <div class="folder-flex">
+      <% @posts.each do |idea| %>
+          <div class="folder-item">
+              <div class="folder-item__wrap">
+                  <div class="folder-item__title">
+                      <p><%= idea.title %></p>
+                  </div>
+                  <div class="folder-item__content">
+                      <p><%= idea.content %></p>
+                  </div>
+                  <div class="folder-item__menu">
+                      <%= render 'favorites/like_button', idea: idea %>
+                      <%= render 'comments/comment', idea: idea, current_user: current_user %>
+                      <%= render 'posts/post_modify', idea: idea %>
+                  </div>
+                  <div class="folder-item__create-user">
+                      <% if idea.user.image? %>                                                              
+                          <%= image_tag idea.user.image.thumb.url %>
+                      <% else %>
+                          <%= image_tag "default_user.png", class: "default-img" %>
+                      <% end %>
+                  </div>
+              </div>
+          </div>
+      <% end %>
+  </div>
   </div>
 </div>
