@@ -2,12 +2,12 @@
   <% if current_user.following?(user) %>
     <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), local: true, method: :delete) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit 'hide', class: 'toggle-btn toggle-btn--hide' %>
+      <%= f.submit '', class: 'toggle-btn toggle-btn--hide' %>
     <% end %>
   <% else %>
     <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
-      <%= f.submit 'show', class: 'toggle-btn toggle-btn--show' %>
+      <%= f.submit '', class: 'toggle-btn toggle-btn--show' %>
     <% end %>
   <% end %>
 <% end %>

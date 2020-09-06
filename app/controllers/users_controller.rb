@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     @user = User.find(params[:id])
     @posts = @user.posts.order(id: :desc).page(params[:page])
     counts(@user)
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
+      redirect_to root_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
@@ -51,6 +52,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
   end
 end

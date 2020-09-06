@@ -23,6 +23,11 @@
         <p class="label"><%= f.label :password_confirmation, 'パスワード（再確認）' %></p>
         <%= f.password_field :password_confirmation %>
       </div>
+      
+      <div class="form-area__item">
+        <p class="label"><%= f.label :image, '画像' %></p>
+        <%= f.file_field :image %>
+      </div>
 
       <%= f.submit '登録する'%>
     <% end %>

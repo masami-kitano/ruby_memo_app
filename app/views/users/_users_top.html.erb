@@ -2,7 +2,11 @@
     <% @users.each do |user| %>
     <li class="user">
         <div class="user__icon">
-            <img class="" src="<%= gravatar_url(user, { size: 40 }) %>" alt="">
+            <% if user.image? %>                                                              
+                <%= image_tag user.image.thumb.url %>
+            <% else %>
+                <%= image_tag "default_user.png", class: "default-img" %>
+            <% end %>
         </div>
         <div class="user__name">
             <%= user.name %>
